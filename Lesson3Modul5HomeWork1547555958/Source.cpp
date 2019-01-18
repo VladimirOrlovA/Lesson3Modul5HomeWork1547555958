@@ -12,17 +12,86 @@ void Task1()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask1\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind1 = 9, ind2 = 7, ind3 = 16;
+	int arr1[ind1], arr2[ind2], arr3[ind3], i, j, c;
+
+	printf("\n\nВвод случайных элементов 1 массива : \n\n");
+
+	for (i = 0; i < ind1; i++)
+	{
+		arr1[i] = 1 + rand() % 10;
+		printf("%d, ", arr1[i]);
+	}
+		
+
+	printf("\n\n\nВвод случайных элементов 2 массива : \n\n");
+
+	for (i = 0; i < ind2; i++)
+	{
+		arr2[i] = 1 + rand() % 10;
+		printf("%d, ", arr2[i]);
+	}
+
+	printf("\n\n\nОбъединение 1 и 2 массива в 3 массив : \n\n");
+
+	for (i = 0; i < ind3; i++)
+	{
+		if (i < ind1) arr3[i] = arr1[i];
+		
+		if (i >= ind1) arr3[i] = arr2[i-ind1];
+		
+		printf("%d, ", arr3[i]);
+	}
+
+	printf("\n\n\nCортировка 3 массива по возрастанию элементов : \n\n");
+
+										// МЕТОД ПУЗЫРЬКА //
+	for (i = 0; i < ind3 - 1; i++)		// достаточно поставить ind3-1 элементов
+	for (j = ind3 - 2; j >= i; j--)		// идем с конца массива в начало
+		if (arr3[j] > arr3[j + 1])		// если элементы стоят правильно, ...
+		{
+			c = arr3[j];				// переменная буфер
+			arr3[j] = arr3[j + 1];		// перестановка arr3[j] и arr3[j + 1]
+			arr3[j + 1] = c;
+		}
+
+	for (i = 0; i < ind3; i++) printf("%d, ", arr3[i]);
+
+	printf("\n\n\n");
 }
+
 
 
 void Task2()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask2\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 9;
+	int arr[ind], i, max = 0, maxi=0;
+
+	printf("\n\nВвод случайных элементов R[9] массива : \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		arr[i] = -3 + rand() % 15; 
+		printf("%d,  ", arr[i]);
+	}
+
+	printf("\n\nОпределяем индекс наибольшего из нечетных по значению положительных элементов: \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		if (arr[i] % 2 != 0 && arr[i] > 0 && arr[i] > max)
+		{
+			max = arr[i];
+			maxi = i;
+		}
+	}
+		printf("R[%d] = %d \n\n", maxi, arr[maxi]);
 }
 
 
