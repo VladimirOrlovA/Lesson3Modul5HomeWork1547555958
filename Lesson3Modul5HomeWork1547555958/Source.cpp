@@ -99,8 +99,32 @@ void Task3()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask3\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 9;
+	int arr[ind], i, sum=0;
+
+	printf("\n\nВвод случайных двузначных элементов массива : \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		arr[i] = 10 + rand() % 35;
+				
+		printf("%d \t", arr[i]);
+	}
+
+	printf("\n\nВывод суммы чисел двузначных элементов массива : \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		sum = (arr[i] / 10) + (arr[i] % 10);
+		
+		arr[i] = sum;
+
+		printf("%d \t", arr[i]);
+	}
+
+	printf("\n\n\n");
 }
 
 
@@ -108,26 +132,100 @@ void Task4()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask4\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 10;
+	int arr[ind], i, sum1=0, sum2=0;
+
+	printf("\n\nВвод случайных двузначных элементов массива : \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		arr[i] = 1 + rand() % 9;
+
+		printf("%d ", arr[i]);
+	}
+
+	printf("\n\nПроизведение суммы чисел с четными индексами \nи суммы чисел с нечетными индексами \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		if (i % 2 != 0) sum1 += arr[i];
+		else sum2 += arr[i];
+	}
+
+	printf("%d", sum1 * sum2);
+
+	printf("\n\n\n");
 }
+
 
 
 void Task5()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask5\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 14;
+	float arr[ind], c=0;
+	int i=0;
+
+	printf("\n\nВвод массива, состоящего из %d элементов действительного типа: \n\n", ind);
+
+	for (i; i < ind; i++)
+	{
+		arr[i] = float (-5 + rand() % 10)/ (3 + rand() % 5);
+
+		printf("A[%2d] = %5.2f \n", i, arr[i]);
+	}
+
+	printf("\n\nМеняем местами первую половину со второй.  \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		if (i < ind / 2)
+		{
+			c = arr[i];
+			arr[i] = arr[ind - 1 - i];
+			arr[ind - 1 - i] = c;
+		}
+
+		printf("A[%2d] = %5.2f \n", i, arr[i]);
+	}
+
+	printf("\nКол-во перестановок : %d\n\n", ind/2);
 }
+
 
 
 void Task6()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask6\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 10;
+	int arr[ind], i = 0, k = 0, l = 0, c = 0;
+
+	printf("\n\nВвод массива, состоящего из %d элементов : \n\n", ind);
+
+	for (i; i < ind; i++)
+	{
+		arr[i] =3 + rand() % 5;
+
+		printf("A[%2d] = %d \n", i, arr[i]);
+	}
+
+	for (i = 0; i < ind - 2; i++)
+	{
+		k = i + 1;
+		l = i + 2;
+		if (arr[k] > arr[i] && arr[k] > arr[l]) c++;
+	}
+	
+
+	printf("\n\nКоличество локальных максимумов в заданном числовом массиве : %d \n\n", c);
 }
 
 
