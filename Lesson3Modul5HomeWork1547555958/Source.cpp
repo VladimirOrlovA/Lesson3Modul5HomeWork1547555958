@@ -206,7 +206,7 @@ void Task6()
 	SetConsoleTextAttribute(hConsole, 7);
 
 	int const ind = 10;
-	int arr[ind], i = 0, k = 0, l = 0, c = 0;
+	int arr[ind], i = 0, c = 0;
 
 	printf("\n\nВвод массива, состоящего из %d элементов : \n\n", ind);
 
@@ -217,14 +217,8 @@ void Task6()
 		printf("A[%2d] = %d \n", i, arr[i]);
 	}
 
-	for (i = 0; i < ind - 2; i++)
-	{
-		k = i + 1;
-		l = i + 2;
-		if (arr[k] > arr[i] && arr[k] > arr[l]) c++;
-	}
+	for (i = 0; i < ind - 2; i++) if (arr[i+1] > arr[i] && arr[i+1] > arr[i+2]) c++;
 	
-
 	printf("\n\nКоличество локальных максимумов в заданном числовом массиве : %d \n\n", c);
 }
 
@@ -233,8 +227,36 @@ void Task7()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask7\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 30;
+	int arr[ind], i = 0, flag;
+
+	printf("\n\nВвод массива, состоящего из %d элементов : \n\n", ind);
+
+	for (i; i < ind; i++)
+	{
+		arr[i] = 3 + rand() % 5;
+
+		printf("A[%2d] = %d \n", i, arr[i]);
+	}
+
+		printf("\n\nВывод индексов последовательностей чисел, которые монотонно убывают : \n\n");
+
+		for (i = 0; i < ind; i++)
+		{
+			flag = 1;
+
+			while (i<ind-1 && arr[i] > arr[i + 1])
+			{
+				if(flag) printf("%d ", i);
+
+				printf("-> %d ", i+1);
+				flag = 0;
+				i++;
+			} 
+			printf("\n");
+		}
 }
 
 
@@ -242,8 +264,35 @@ void Task8()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask8\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 10;
+	int arr[ind], i, dif = 0;
+
+	printf("\n\nВвод случайных двузначных элементов массива A[%d] : \n\n", ind);
+
+	for (i = 0; i < ind; i++)
+	{
+		arr[i] = 10 + rand() % 35;
+
+		printf("%d\t", arr[i]);
+	}
+
+	printf("\n\nВывод разностей цифр элементов исходного массива : \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		dif = (arr[i] / 10) - (arr[i] % 10);
+
+		if (dif < 0) dif *= -1;
+
+		arr[i] = dif;
+
+		printf("%d\t", arr[i]);
+	}
+
+	printf("\n\n\n");
+
 }
 
 
@@ -251,8 +300,40 @@ void Task9()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask9\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 30;
+	int arr[ind], i = 0, flag, sum = 0, sum1 = 0;
+
+	printf("\n\nВвод массива, состоящего из %d элементов : \n\n", ind);
+
+	for (i; i < ind; i++)
+	{
+		arr[i] = 3 + rand() % 5;
+
+		printf("A[%2d] = %d \n", i, arr[i]);
+	}
+
+	printf("\n\nВывод индексов последовательностей чисел, которые монотонно возрастают : \n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		flag = 1;
+		
+		while (i<ind - 1 && arr[i] < arr[i + 1]) // привозникновении последовательности входим в цикл, исключаем просмотр за пред массива
+		{
+			sum++;
+			
+			if (flag) printf("%d ", i);		// выводим на экран 1 индекс элемента последовательности
+			else sum1++;
+			
+			printf("-> %d ", i+1);
+			flag = 0;					// устанавливаем флаг, чтобы исключить повторный вывод 2 индекса, если обнаруживаем 3 и т.д.
+			i++;						// увеличиваем на один шаг индекс, чтобы проверить продолжается ли последовательность...
+		}
+		printf("\n");
+	}
+	printf("количество участков массива, на котором элементы монотонно возрастают \n(каждое следующее число больше предыдущего) \n\n %d", sum-sum1);
 }
 
 
