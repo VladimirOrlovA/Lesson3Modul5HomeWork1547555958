@@ -247,7 +247,7 @@ void Task7()
 		{
 			flag = 1;
 
-			while (i<ind-1 && arr[i] > arr[i + 1])
+			while (i < (ind - 1) && arr[i] > arr[i + 1])
 			{
 				if(flag) printf("%d ", i);
 
@@ -320,7 +320,7 @@ void Task9()
 	{
 		flag = 1;
 		
-		while (i<ind - 1 && arr[i] < arr[i + 1]) // привозникновении последовательности входим в цикл, исключаем просмотр за пред массива
+		while (i < (ind - 1) && arr[i] < arr[i + 1]); // привозникновении последовательности входим в цикл, исключаем просмотр за пред массива
 		{
 			sum++;
 			
@@ -341,8 +341,46 @@ void Task10()
 {
 	SetConsoleTextAttribute(hConsole, 10);
 	printf("\n--------------------------------------------------------------------------\n\nTask10\n\n");
-	printf("\nВ разработке.... \n\n");
 	SetConsoleTextAttribute(hConsole, 7);
+
+	int const ind = 10;
+	float A[ind], B[ind], maxA = -15, maxB = -15, buffer;	
+	int i, maxAind, maxBind;
+
+	for (i = 0; i < ind; i++)
+	{
+		A[i] = float(-15 + rand() % 45) / (5 + rand() % 15);
+		B[i] = float(-15 + rand() % 45) / (5 + rand() % 15);
+		printf("A[%d] = %5.2f \t B[%d] = %5.2f \n", i, A[i], i, B[i]);
+	}
+
+	printf("\nОпределяем максимальные элементы в каждом массиве и меняем их местами:\n\n");
+
+	for (i = 0; i < ind; i++)
+	{
+		if (A[i] > maxA)
+		{
+			maxA = A[i];
+			maxAind = i;
+		}
+		
+		if (B[i] > maxB)
+		{
+			maxB = B[i];
+			maxBind = i;
+		}	
+	}
+
+		printf("A[%d] = %5.2f \t B[%d] = %5.2f \n\n", maxAind, A[maxAind], maxBind, B[maxBind]);
+
+		buffer = A[maxAind];
+		A[maxAind] = B[maxBind];
+		B[maxBind] = buffer;
+
+	for (i = 0; i < ind; i++)	printf("A[%d] = %5.2f \t B[%d] = %5.2f \n", i, A[i], i, B[i]);
+	
+	printf("\n\n\n");
+
 }
 
 
